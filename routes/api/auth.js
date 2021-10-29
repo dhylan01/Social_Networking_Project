@@ -22,8 +22,7 @@ router.get('/',auth, async (req,res) => {
 
 router.post(
     '/',
-    [ //what does this do??
-    check('name', 'Name is required').not().isEmpty(),
+    [ //what does this do?
     check('email', 'Please include a valid email').isEmail(),
     check('password','Password is required').exists()
     ],
