@@ -73,7 +73,7 @@ router.post(
       }
       );
 
-    res.send('User registered');
+    //res.send('User registered'); this sends a callback before jwt.sign runs which cuases it to not return a token
    } catch(err){
     console.error(err.message);
     res.status(500).send('Server Error');
