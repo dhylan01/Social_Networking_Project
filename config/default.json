@@ -1,6 +1,6 @@
 {
     "mongoURI": "mongodb+srv://dhylan123:dhylan123@devconnector.6rp8x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
     "jwtSecret": "mysecrettoken",
-    "githubToken": ""
+    "githubToken": "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"
 
 }
