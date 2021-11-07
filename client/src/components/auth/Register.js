@@ -1,6 +1,12 @@
-import React, {Fragment, useState} from 'react'
+import React, {Fragment, useState} from 'react';
+import { connect } from 'react-redux'; //to wrok with redux
 import {Link} from 'react-router-dom';
-const Register = () => {
+import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
+import PropTypes from 'prop-types';
+
+// so no props
+const Register = ({ setAlert, register }) => {
     //this is our state 
     const[formData, setFormData] = useState({
         name: '',
@@ -10,14 +16,14 @@ const Register = () => {
     });
 
     const {name, email, password, password2} = formData;
-    const onChange = e => setFormData({ ... formData, [e.target.name]: e.target.value });
+    const onChange = e =>    setFormData({ ...formData, [e.target.name]: e.target.value });
     const onSubmit = async e => {
         e.preventDefault();
         if(password !== password2) {
-            console.log('Passwords do not match');
+            setAlert('Passwords do not match', 'danger'); //danger is in css file
         }
         else {
-            console.log('SUCCESS');
+            register({name,email,password});
             /* how to keep the code for a user and have them be created
             const newUser = {
                 name,
@@ -41,7 +47,6 @@ const Register = () => {
             */
         }
     }
-
 
     return <Fragment>  <h1 className="large text-primary">Sign Up</h1>
     <p className="lead"><i className="fas fa-user"></i> Create Your Account</p>
@@ -82,6 +87,9 @@ const Register = () => {
       Already have an account? <Link to ="/login">Sign In</Link>
     </p></Fragment>
     };
-    
-
-export default Register;
+     Register.propTypes = {
+       setAlert: PropTypes.func.isRequired,
+       register: PropTypes.func.isRequired
+     }
+//pass in actions through here 
+export default connect(null, {setAlert, register}) (Register);
