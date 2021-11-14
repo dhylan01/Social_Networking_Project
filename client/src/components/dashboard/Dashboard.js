@@ -5,15 +5,36 @@ import Spinner from '../layout/Spinner'
 import { getCurrentProfile } from '../../actions/profile'
 import auth from '../../reducers/auth'
 import profile from '../../reducers/profile'
+import { Link } from 'react-router-dom'
 
-const Dashboard = ({ getCurrentProfile, auth, profile: {profile, loading}}) => {
+const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, loading } }) => {
     useEffect(() => {
         getCurrentProfile();
     }, []);
-    return loading && profile ===null ? <Spinner /> : <Fragment> 
-    test
-    </Fragment>;
-}
+    return loading && profile === null ? (
+        <Spinner />
+    ) : (
+        <Fragment>
+            <h1 className="large text-primary"> Dashboard</h1>
+            <p className="lead">
+                <i className="fas fa-user"> </i>
+                Welcome {user && user.name}
+            </p>
+            {profile !== null ? (<Fragment> has </Fragment>
+            ) : (
+                <Fragment>
+                    <p>
+                        You have not yet set up a profile, please add info
+                    </p>
+                    <Link to='/create-profile' className='btn btn-primary my-1'>
+                        Create profile
+                    </Link>
+                </Fragment>
+
+            )}
+        </Fragment>
+    );
+};
 
 Dashboard.propTypes = {
     getCurrentProfile: PropTypes.func.isRequired,
