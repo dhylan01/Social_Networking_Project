@@ -1,5 +1,5 @@
 import axios from 'axios';
-import c from 'config';
+
 import { setAlert } from './alert';
 
 import {
