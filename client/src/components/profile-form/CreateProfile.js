@@ -55,7 +55,7 @@ const CreateProfile = ({ createProfile, history }) => {
                 profile stand out
             </p>
             <small>* = required field</small>
-            <form className="form" value={status} onChange={e => onChange(e)}>
+            <form className="form" value={status} onSubmit={onSubmit}>
                 <div className="form-group">
                     <select name="status" value={status} onChange={onChange}>
                         <option value="0">* Select Professional Status</option>
