@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom'
 const Dashboard = ({ getCurrentProfile, deleteAccount, auth: { user }, profile: { profile, loading } }) => {
     useEffect(() => {
         getCurrentProfile();
-    }, []);
+    }, [getCurrentProfile]);
     return loading && profile === null ? (
         <Spinner />
     ) : (
@@ -63,4 +63,4 @@ const mapStateToProps = state => ({
     deleteAccount: PropTypes.func.isRequired
 });
 
-export default connect(mapStateToProps, { getCurrentProfile, deleteAccount})(Dashboard);
+export default connect(mapStateToProps, { getCurrentProfile, deleteAccount })(Dashboard);
