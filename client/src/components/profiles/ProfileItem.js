@@ -5,12 +5,14 @@ import PropTypes from 'prop-types'
 //no need for connect since we just pulling out profile data here
 
 const ProfileItem = ({
-    user: { _id, name, avatar },
-    status,
-    company,
-    location,
-    skills
-}) => {
+    profile: {
+      user: { _id, name, avatar },
+      status,
+      company,
+      location,
+      skills,
+    },
+  }) => {
     return (
         <div>
             return < div className="profile bg-light">
