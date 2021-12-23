@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { Link, useMatch, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createProfile, getCurrentProfile } from '../../actions/profile';
@@ -31,7 +31,7 @@ const ProfileForm = ({
 }) => {
   const [formData, setFormData] = useState(initialState);
 
-  const creatingProfile = useMatch('/create-profile');
+  //const creatingProfile = useMatch('/create-profile');
 
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
 
@@ -83,15 +83,10 @@ const ProfileForm = ({
   };
 
   return (
-    <section className="container">
-      <h1 className="large text-primary">
-        {creatingProfile ? 'Create Your Profile' : 'Edit Your Profile'}
-      </h1>
+    <Fragment>
+      <h1 className="large text-primary">Edit Your Profile</h1>
       <p className="lead">
-        <i className="fas fa-user" />
-        {creatingProfile
-          ? ` Let's get some information to make your`
-          : ' Add some changes to your profile'}
+        <i className="fas fa-user" /> Add some changes to your profile
       </p>
       <small>* = required field</small>
       <form className="form" onSubmit={onSubmit}>
@@ -257,7 +252,7 @@ const ProfileForm = ({
           Go Back
         </Link>
       </form>
-    </section>
+    </Fragment>
   );
 };
 
