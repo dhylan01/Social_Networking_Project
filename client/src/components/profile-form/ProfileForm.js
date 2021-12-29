@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createProfile, getCurrentProfile } from '../../actions/profile';
@@ -30,12 +30,12 @@ const ProfileForm = ({
   getCurrentProfile
 }) => {
   const [formData, setFormData] = useState(initialState);
-
+  
   //const creatingProfile = useMatch('/create-profile');
 
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
 
-  const navigate = useNavigate();
+
 
   useEffect(() => {
     // if there is no profile, attempt to fetch one
@@ -79,7 +79,7 @@ const ProfileForm = ({
 
   const onSubmit = (e) => {
     e.preventDefault();
-    createProfile(formData, navigate, profile ? true : false);
+    createProfile(formData, mapStateToProps.history.push('/profiles'), profile ? true : false);
   };
 
   return (
@@ -264,6 +264,7 @@ ProfileForm.propTypes = {
 
 const mapStateToProps = (state) => ({
   profile: state.profile
+  
 });
 
 export default connect(mapStateToProps, { createProfile, getCurrentProfile })(
